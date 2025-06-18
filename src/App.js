@@ -2,6 +2,8 @@ import './App.css';
 import { Fragment, useState, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
+
+import GitHubState from './context/gitHub/gitHubState';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import User from './components/users/User';
@@ -65,43 +67,45 @@ const App = () => {
 	};
 
 	return (
-		<Router>
-			<div className='App'>
-				<Navbar></Navbar>
-				<div className='container'>
-					<Alert alert={alert}></Alert>
-					<Routes>
-						<Route
-							path='/'
-							element={
-								<Fragment>
-									<Search
-										searchUsers={searchUsers}
-										clearUsers={clearUsers}
-										showClear={users.length > 0 ? true : false}
-										setAlert={showAlert}
-									></Search>
-									<Users loading={loading} users={users}></Users>
-								</Fragment>
-							}
-						></Route>
-						<Route path='/about' element={<About></About>}></Route>
-						<Route
-							path='/user/:login'
-							element={
-								<User
-									getUser={getUser}
-									getUserRepos={getUserRepos}
-									user={user}
-									repos={repos}
-									loading={loading}
-								></User>
-							}
-						></Route>
-					</Routes>
+		<GitHubState>
+			<Router>
+				<div className='App'>
+					<Navbar></Navbar>
+					<div className='container'>
+						<Alert alert={alert}></Alert>
+						<Routes>
+							<Route
+								path='/'
+								element={
+									<Fragment>
+										<Search
+											searchUsers={searchUsers}
+											clearUsers={clearUsers}
+											showClear={users.length > 0 ? true : false}
+											setAlert={showAlert}
+										></Search>
+										<Users loading={loading} users={users}></Users>
+									</Fragment>
+								}
+							></Route>
+							<Route path='/about' element={<About></About>}></Route>
+							<Route
+								path='/user/:login'
+								element={
+									<User
+										getUser={getUser}
+										getUserRepos={getUserRepos}
+										user={user}
+										repos={repos}
+										loading={loading}
+									></User>
+								}
+							></Route>
+						</Routes>
+					</div>
 				</div>
-			</div>
-		</Router>
+			</Router>
+		</GitHubState>
 	);
 };
 
