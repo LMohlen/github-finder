@@ -7,6 +7,7 @@ import User from './components/users/User';
 import Alert from './components/layout/Alert';
 import About from './components/pages/About';
 import Home from './components/pages/Home';
+import NotFound from './components/pages/NotFound';
 
 const App = () => {
 	return (
@@ -21,6 +22,7 @@ const App = () => {
 								<Route path='/' element={<Home></Home>}></Route>
 								<Route path='/about' element={<About></About>}></Route>
 								<Route path='/user/:login' element={<User></User>}></Route>
+								<Route path='*' element={<NotFound></NotFound>}></Route>
 							</Routes>
 						</div>
 					</div>
