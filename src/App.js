@@ -1,14 +1,12 @@
 import './App.css';
-import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GitHubState from './context/github/gitHubState';
 import AlertState from './context/alert/alertState';
 import Navbar from './components/layout/Navbar';
-import Users from './components/users/Users';
 import User from './components/users/User';
-import Search from './components/users/Search';
 import Alert from './components/layout/Alert';
 import About from './components/pages/About';
+import Home from './components/pages/Home';
 
 const App = () => {
 	return (
@@ -20,17 +18,9 @@ const App = () => {
 						<div className='container'>
 							<Alert></Alert>
 							<Routes>
-								<Route
-									path='/'
-									element={
-										<Fragment>
-											<Search></Search>
-											<Users></Users>
-										</Fragment>
-									}
-								></Route>
+								<Route path='/' element={<Home></Home>}></Route>
 								<Route path='/about' element={<About></About>}></Route>
-								<Route path='/user/:login' Component={User}></Route>
+								<Route path='/user/:login' element={<User></User>}></Route>
 							</Routes>
 						</div>
 					</div>
