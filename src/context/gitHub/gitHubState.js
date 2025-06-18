@@ -1,7 +1,7 @@
 import { useReducer, useCallback } from 'react';
 import axios from 'axios';
-import GitHubContext from './gitHubContext';
 import GitHubReducer from './gitHubReducer';
+import GitHubContext from './gitHubContext';
 import {
 	SEARCH_USERS,
 	SET_LOADING,
@@ -60,7 +60,7 @@ const GitHubState = (props) => {
 			payload: res.data,
 		});
 	}, []);
-	
+
 	// Clear Users
 	const clearUsers = () => {
 		dispatch({ type: CLEAR_USERS });
